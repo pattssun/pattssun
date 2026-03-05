@@ -23,3 +23,14 @@ def bookmarks(
 
     if save:
         save_bookmarks(settings, tweets)
+
+
+@app.command()
+def generate(
+    dry_run: bool = typer.Option(False, "--dry-run", help="Show which bookmarks would get scripts without calling API"),
+) -> None:
+    """Generate short-form video scripts for bookmarks."""
+    from pattssun.steps.generate_scripts import run
+
+    settings = Settings()
+    run(settings, dry_run=dry_run)

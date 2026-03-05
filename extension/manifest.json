@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "X Bookmarks Scraper",
+  "version": "1.0.0",
+  "description": "Scrape bookmarks from X (Twitter) without API access",
+  "permissions": ["storage", "activeTab", "scripting", "tabs", "downloads"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://x.com/i/bookmarks*",
+        "https://twitter.com/i/bookmarks*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
